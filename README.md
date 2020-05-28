@@ -1,5 +1,7 @@
 # POC on spinnaker and eks with a spring boot project.
-Based on https://aws.amazon.com/blogs/opensource/continuous-delivery-spinnaker-amazon-eks/
+Based on 
+https://aws.amazon.com/blogs/opensource/continuous-delivery-spinnaker-amazon-eks/
+https://aws.amazon.com/blogs/opensource/continuous-integration-using-jenkins-and-hashicorp-terraform-on-amazon-eks/
 
 ## Install kubectl and aws-iam-authenticator
 ```
@@ -174,7 +176,7 @@ terraform apply -auto-approve
 ```
 Could not take it further since reached VPC max limit for free tier. Will try it later.
 
-### Jenkins
+## Jenkins
 1. Run the following to install Java.
 ```sudo apt install default-jdk```
 2. To install Jenkins do the following (https://www.jenkins.io/doc/book/installing/#debianubuntu) - Dont use the weekly release. Half of the plugin installation would fail on first startup. Uninstall it using (https://stackoverflow.com/questions/38604715/how-can-i-remove-jenkins-completely-from-linux).  
@@ -215,3 +217,23 @@ sudo chmod 666 /var/run/docker.sock
 12. Build gets triggered automatically whenever there is a change in the git.
 
 
+## Add the docker registry with repos to spinnaker
+```
+ADDRESS=index.docker.io
+REPOSITORIES=godaprojects/goda-eks-jenkins-spinnaker-poc
+USERNAME=godaprojects
+hal config provider docker-registry enable
+hal config provider docker-registry account add my-docker-registry \
+    --address $ADDRESS \
+    --repositories $REPOSITORIES \
+    --username $USERNAME \
+    --password
+```
+
+## Add github artifact to spinnaker
+Create a file called Token file with the app token
+```
+ARTIFACT_ACCOUNT_NAME=goda-github-account
+hal config artifact github enable
+hal config artifact github account add $ARTIFACT_ACCOUNT_NAME     --token-file $TOKEN_FILE
+```
