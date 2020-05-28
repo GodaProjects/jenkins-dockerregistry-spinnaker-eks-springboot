@@ -2,7 +2,8 @@
 Based on https://aws.amazon.com/blogs/opensource/continuous-delivery-spinnaker-amazon-eks/
 
 ## Install kubectl and aws-iam-authenticator
-```curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+```
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 
 chmod +x ./kubectl
 
@@ -16,7 +17,8 @@ mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator
 
 echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
 
-aws-iam-authenticator  help```
+aws-iam-authenticator  help
+```
 
 ## install awscli
 
