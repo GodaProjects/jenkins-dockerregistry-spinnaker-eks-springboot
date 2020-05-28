@@ -223,7 +223,7 @@ ADDRESS=index.docker.io
 REPOSITORIES=godaprojects/goda-eks-jenkins-spinnaker-poc
 USERNAME=godaprojects
 hal config provider docker-registry enable
-hal config provider docker-registry account add my-docker-registry \
+hal config provider docker-registry account add goda-docker-registry \
     --address $ADDRESS \
     --repositories $REPOSITORIES \
     --username $USERNAME \
