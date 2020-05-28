@@ -165,3 +165,10 @@ hal config security ui edit --override-base-url http://${UI_URL}
 
 hal deploy apply
 ```
+
+## Setup jenkins using terraform
+```
+terraform init
+terraform plan
+terraform apply -auto-approve
+```
