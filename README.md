@@ -175,26 +175,31 @@ terraform apply -auto-approve
 Could not take it further since reached VPC max limit for free tier. Will try it later.
 
 ### Jenkins
-4. Run the following to install Java.
+1. Run the following to install Java.
 ```sudo apt install default-jdk```
-5. To install Jenkins do the following (https://www.jenkins.io/doc/book/installing/#debianubuntu) - Dont use the weekly release. Half of the plugin installation would fail on first startup. Uninstall it using (https://stackoverflow.com/questions/38604715/how-can-i-remove-jenkins-completely-from-linux).  
+2. To install Jenkins do the following (https://www.jenkins.io/doc/book/installing/#debianubuntu) - Dont use the weekly release. Half of the plugin installation would fail on first startup. Uninstall it using (https://stackoverflow.com/questions/38604715/how-can-i-remove-jenkins-completely-from-linux).  
 ```
 sudo service jenkins stop
 sudo apt-get remove --purge jenkins
 ```
 Use only LTS releases (https://github.com/jenkinsci/docker/issues/785).
-6. Install maven ``` sudo apt-get install maven```
-7. Install Git ```sudo apt-get install git```
-9. Install Docker and Github integration plugin in Jenkins
-10. Run the following command to allow Jenkins user 'jenkins' to run docker commands
+3. Install maven. 
+``` sudo apt-get install maven```
+4. Install Git. 
+```sudo apt-get install git```
+5. Install Docker and Github integration plugin in Jenkins.
+6. Run the following command to allow Jenkins user 'jenkins' to run docker commands.
 ```sudo usermod -aG docker jenkins```
-11. Change the jenkins user password. Had to change my root password also since i did not know it - ```sudo passwd root```
+7. Change the jenkins user password. Had to change my root password also since i did not know it - 
+```sudo passwd root```
 ```sudo passwd jenkins```
-12. Run ```su - jenkins``` so that the group membership is renewed    
-13. Run the following to give docker.sock file the access. I am not sure whether these are the right things to do.
+8. Run 
+```su - jenkins``` 
+so that the group membership is renewed.    
+9. Run the following to give docker.sock file the access. I am not sure whether these are the right things to do.
 ```sudo chmod 666 /var/run/docker.sock```
-14. Create pipeline (multibranch) - create the docker, git credentials also along with that. Make sure that docker credentials config name is same as what is in the Jenkinsfile
-15. Scan first
-16. Build gets triggered automatically whenever there is a change in the git
+10. Create pipeline (multibranch) - create the docker, git credentials also along with that. Make sure that docker credentials config name is same as what is in the Jenkinsfile.
+11. Scan first.
+12. Build gets triggered automatically whenever there is a change in the git.
 
 
