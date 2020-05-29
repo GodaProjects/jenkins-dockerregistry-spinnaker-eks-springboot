@@ -1,36 +1,109 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: godaspringboot
+#spec:
+#  selector:
+#    matchLabels:
+#      app: godaspringboot
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: godaspringboot
+#    spec:
+#      containers:
+#      - name: godaspringboot
+#        image: godaprojects/goda-eks-jenkins-spinnaker-poc
+#        ports:
+#        - containerPort: 3030
+#        imagePullPolicy: Always
+#---
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: godaspringboot
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: godaspringboot
+#  template:
+#    metadata:
+#      labels:
+#        app: godaspringboot
+#    spec:
+#      containers:
+#        - image: godaprojects/goda-eks-jenkins-spinnaker-poc
+#          name: godaspringboot
+#          imagePullPolicy: Always
+#
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: godaspringboot
+#  namespace: spinnaker
+#spec:
+#  type: NodePort
+#  selector:
+#    app: godaspringboot
+#  ports:
+#  - name: http
+#    protocol: TCP
+#    port: 3030
+#    targetPort: 3030
+#    nodePort: 32029
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: godaspringboot
+#  namespace: spinnaker
+#spec:
+#  ports:
+#    - nodePort: 32029
+#      port: 3030
+#      protocol: TCP
+#      targetPort: 3030
+#  selector:
+#    app: godaspringboot
+#  type: NodePort
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: godaspringboot
   name: godaspringboot
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: godaspringboot
-  replicas: 1 
-  template: 
+  template:
     metadata:
       labels:
         app: godaspringboot
     spec:
       containers:
-      - name: godaspringboot
-        image: godaprojects/goda-eks-jenkins-spinnaker-poc
-        ports:
-        - containerPort: 3030
-        imagePullPolicy: Always
+        - image: godaprojects/goda-eks-jenkins-spinnaker-poc
+          name: godaspringboot
+          imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: godaspringboot
   name: godaspringboot
-  namespace: spinnaker
 spec:
-  type: LoadBalancer
+  ports:
+    - nodePort: 32031
+      port: 3030
+      protocol: TCP
+      targetPort: 3030
   selector:
     app: godaspringboot
-  ports:
-  - name: http
-    protocol: TCP
-    port: 80
-    targetPort: 3030
-
+  type: NodePort
