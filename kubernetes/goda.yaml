@@ -16,7 +16,7 @@ spec:
       - name: godaspringboot
         image: godaprojects/goda-eks-jenkins-spinnaker-poc
         ports:
-        - containerPort: 8080
+        - containerPort: 3030
         imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -32,5 +32,5 @@ spec:
   - name: http
     protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 3030
 
