@@ -355,16 +355,22 @@ sudo kubectl -n spinnaker get pods
 sudo kubectl -n spinnaker get svc
 
 sudo kubectl -n $NAMESPACE get svc spin-deck-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
-
 ```
 
 ## Final comments
 All works
 Could not check it finally because I dont know how to setup loadbalancer and I cant test nodeport on AWS. So.... It deploys... so I am good. Closing this project. was wonderful.
 
+#### Clear up everything before you go!
+```
+eksctl delete cluster --name=goda-eks-spinnaker-cluster --region=ap-southeast-2
+```
+stop the Jenkins/Spinnaker/Helm ec2 instance
+remove unwanted vpcs/security groups
 
 
 # Later - part 2 - With ECS/ECR/Kubernates
 Based on https://aws.amazon.com/blogs/opensource/deployment-pipeline-spinnaker-kubernetes/
 
 Gode!
+
