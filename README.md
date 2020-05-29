@@ -239,7 +239,9 @@ hal config artifact github account add $ARTIFACT_ACCOUNT_NAME     --token-file $
 ```
 
 
-# Spinnaker in the article listed above did NOT work. So reinstalling it as per https://www.spinnaker.io/setup/install/providers/kubernetes-v2/aws-eks/
+# Reinstall Spinnaker
+Spinnaker in the article listed above did NOT work. So reinstalling it as per https://www.spinnaker.io/setup/install/providers/kubernetes-v2/aws-eks/
+
 ## Rollback of old spinnaker
 ```
 hal deploy clean
@@ -356,6 +358,13 @@ sudo kubectl -n $NAMESPACE get svc spin-deck-public -o jsonpath='{.status.loadBa
 
 ```
 
-# Final comments
+## Final comments
 All works
 Could not check it finally because I dont know how to setup loadbalancer and I cant test nodeport on AWS. So.... It deploys... so I am good. Closing this project. was wonderful.
+
+
+
+# Later - part 2 - With ECS/ECR/Kubernates
+Based on https://aws.amazon.com/blogs/opensource/deployment-pipeline-spinnaker-kubernetes/
+
+Gode!
