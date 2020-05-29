@@ -355,3 +355,7 @@ sudo kubectl -n spinnaker get svc
 sudo kubectl -n $NAMESPACE get svc spin-deck-public -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 
 ```
+
+# Final comments
+All works
+Could not check it finally because I dont know how to setup loadbalancer and I cant test nodeport on AWS. So.... It deploys... so I am good. Closing this project. was wonderful.
